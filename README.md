@@ -9,14 +9,16 @@ The generated EDID is 256 bytes:
 
 ## Files
 
-- `make_edid.py`: generator script (Python 3, standard library only).
+- `main.go`: generator (Go, standard library only).
+- `main_test.go`: checks the generated EDID against the reference `.bin`/`.hex` and verifies both block checksums.
 - `kvm-5120x1440-30hz.bin`: generated 256-byte EDID binary.
 - `kvm-5120x1440-30hz.hex`: hex dump of the same EDID.
 
 ## Usage
 
 ```sh
-python3 make_edid.py   # writes kvm-5120x1440-30hz.bin and prints the hex
+go run .    # writes kvm-5120x1440-30hz.bin and prints the hex
+go test ./...
 ```
 
 Load the resulting `.bin` onto the NanoKVM Go as its custom EDID.
